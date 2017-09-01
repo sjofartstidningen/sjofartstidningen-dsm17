@@ -2,19 +2,25 @@
   "name": "sjofartstidningen-dsm17",
   "version": "0.0.1",
   "scripts": {
-    "server": "PORT=3001 DEBUG=express:server node ./bin/www",
-    "start": "react-scripts start",
+    "server": "PORT=3001 DEBUG=server:* node ./bin/www",
+    "start": "NODE_ENV=production node ./bin/www",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "precommit": "lint-staged"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "body-parser": "^1.17.2",
+    "chalk": "^2.1.0",
+    "cheerio": "^1.0.0-rc.2",
     "cookie-parser": "^1.4.3",
     "debug": "^3.0.1",
     "express": "^4.15.4",
+    "he": "^1.1.1",
     "morgan": "^1.8.2",
+    "ramda": "^0.24.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-scripts": "1.0.12",
@@ -26,6 +32,10 @@
     "prettier": "^1.6.1"
   },
   "lint-staged": {
-    "*.js": ["prettier --single-quote --trailing-comma all --write", "git add"]
-  }
+    "*.js": [
+      "prettier --single-quote --trailing-comma all --write",
+      "git add"
+    ]
+  },
+  "proxy": "http://localhost:3001"
 }
