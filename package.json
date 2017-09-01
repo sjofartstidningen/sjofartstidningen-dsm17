@@ -2,6 +2,7 @@
   "name": "sjofartstidningen-dsm17",
   "version": "0.0.1",
   "scripts": {
+    "server": "PORT=3001 DEBUG=express:server node ./bin/www",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -9,9 +10,15 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "debug": "^3.0.1",
+    "express": "^4.15.4",
+    "morgan": "^1.8.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-scripts": "1.0.12"
+    "react-scripts": "1.0.12",
+    "serve-favicon": "^2.4.3"
   },
   "devDependencies": {
     "husky": "^0.14.3",
