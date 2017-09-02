@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Container = styled.div`width: 2rem;`;
+const Container = styled.div`width: 2.5vw;`;
 
 export default () => (
   <Container>

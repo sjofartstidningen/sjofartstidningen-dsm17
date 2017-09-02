@@ -10,17 +10,18 @@ const Container = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
+  background-color: rgba(255, 255, 255, 0.9);
+  font-size: 0.8vw;
   overflow: scroll;
   z-index: 2;
-  background-color: rgba(255, 255, 255, 0.9);
 `;
 
 const Close = styled.button`
   position: fixed;
-  top: 2rem;
-  left: 2rem;
-  width: 4rem;
-  height: 4rem;
+  top: 2em;
+  left: 2em;
+  width: 4em;
+  height: 4em;
   border: 2px solid #0599e4;
   border-radius: 100%;
   background-color: transparent;
@@ -47,57 +48,56 @@ const Close = styled.button`
 
 const Article = styled.article`
   position: relative;
-  width: 35rem;
-  margin: 0 auto;
-  margin-bottom: 3rem;
+  width: 35em;
+  margin: 2em auto;
+  margin-bottom: 3em;
   border-bottom: 1px solid #000;
-  padding: 0 4rem 2rem;
-  font-size: 1rem;
+  padding: 0 4em 2em;
+  font-size: 1em;
   background-color: #fff;
 `;
 
 const ImgContainer = styled.div`
-  position: relative;
+  position: absolute;
+  left: -100%;
   width: 100%;
-  padding: 2rem;
-  box-shadow: 3px 7px 16px -6px rgba(0, 0, 0, 0.07),
-    15px 20px 37px -2px rgba(0, 0, 0, 0.07),
-    20px 42px 80px 6px rgba(0, 0, 0, 0.07),
-    20px 42px 120px 10px rgba(0, 0, 0, 0.07);
+  padding: 0em;
+  box-shadow: 4px 4px 60px 3px rgba(0, 0, 0, 0.3);
+  background-color: #eee;
   z-index: 1;
-  transform: translate(-100%, 0);
 `;
 
 const Img = styled.img`
   position: relative;
+  display: block;
   max-width: 100%;
   height: auto;
-  z-index: -1;
+  opacity: 0.9;
+  z-index: 1;
 `;
 
 const Content = styled.div`
   position: relative;
   font-size: 1em;
   z-index: 2;
-  transform: translate(0, -5rem);
 `;
 
 const Title = styled.h1`
   position: relative;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.5em;
   font-size: 3.375em;
   line-height: 0.9em;
   text-wrap: balanced;
 `;
 
 const Introduction = styled.div`
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.5em;
   font-size: 1.5em;
   line-height: 1.3em;
 `;
 
 const StaticHtml = styled.div`
-  margin-bottom: 2rem;
+  margin-bottom: 2em;
 
   & > p {
     margin-bottom: 1em;
@@ -116,12 +116,12 @@ const StaticHtml = styled.div`
     display: block;
     max-width: 100%;
     height: auto;
-    margin-left: 3rem;
+    margin-left: 3em;
   }
 `;
 
 const DateStamp = styled.div`
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.5em;
   font-size: 1em;
   font-style: italic;
 

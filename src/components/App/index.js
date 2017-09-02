@@ -6,20 +6,19 @@ import Logotype from '../Logotype';
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   width: 100vw;
   min-height: 100vh;
   padding: 2rem;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
-  background-color: rgba(5, 153, 228, 0.2);
 `;
 
 const GridItem = styled.div`
   width: 100%;
   padding: 2rem;
-  ${props => props.span && css`grid-column: 1 / span 2;`} &:first-child {
-    border-right: 1px solid #000;
+  ${props => props.span && css`grid-column: 1 / span 2;`} &:last-child {
+    border-left: 1px solid #000;
   }
 `;
 

@@ -11,44 +11,45 @@ const Container = styled.ul`
   width: 100%;
   list-style: none;
   z-index: 0;
+  font-size: 0.8vw;
 `;
 
 const Article = styled.li`
   position: relative;
-  width: 33rem;
+  width: 100%;
+  max-width: 33em;
   margin: 0 auto;
-  margin-bottom: 3rem;
+  margin-bottom: 3em;
   border-bottom: 1px solid #000;
-  padding: 0 1rem 2rem;
-  font-size: 1rem;
+  padding: 0 1em 2em;
 
   &:hover .js-transform-img {
-    transform: translate(-40%, 2.5rem);
+    transform: translate(-40%, 2.5em);
   }
 
   &:hover .js-transform-content {
-    transform: translate(50%, -2.5rem);
+    transform: translate(50%, -2.5em);
   }
 `;
 
 const ImgContainer = styled.div`
   position: relative;
   width: 100%;
-  padding: 2rem;
-  box-shadow: 3px 7px 16px -6px rgba(0, 0, 0, 0.07),
-    15px 20px 37px -2px rgba(0, 0, 0, 0.07),
-    20px 42px 80px 6px rgba(0, 0, 0, 0.07),
-    20px 42px 120px 10px rgba(0, 0, 0, 0.07);
+  padding: 0em;
+  box-shadow: 4px 4px 60px 3px rgba(0, 0, 0, 0.3);
+  background-color: #eee;
   z-index: 1;
-  transform: translate(-45%, 2rem);
+  transform: translate(-45%, 2em);
   transition: transform 0.3s ease-in-out;
   will-change: transform;
 `;
 
 const Img = styled.img`
   position: relative;
+  display: block;
   max-width: 100%;
   height: auto;
+  opacity: 0.9;
   z-index: -1;
 `;
 
@@ -56,73 +57,44 @@ const Content = styled.div`
   position: relative;
   font-size: 1em;
   z-index: 2;
-  transform: translate(45%, -5rem);
+  transform: translate(45%, -5em);
   transition: transform 0.3s ease-in-out;
   will-change: transform;
 `;
 
 const Title = styled.h1`
   position: relative;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.5em;
   font-size: 3.375em;
   line-height: 0.9em;
   text-wrap: balanced;
 `;
 
 const Introduction = styled.div`
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.5em;
   font-size: 1.5em;
   line-height: 1.3em;
 `;
 
 const DateStamp = styled.div`
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.5em;
   font-size: 1em;
   font-style: italic;
-
-  & strong {
-    color: #0599e4;
-  }
 `;
 
 const ShowHideButton = styled.button`
   position: relative;
   display: block;
-  margin: 0 0 0 3rem;
-  border: 3px solid #0599e4;
-  border-radius: 2rem;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
+  margin: 0 0 0 3em;
+  border: 0.2em solid #0599e4;
+  border-radius: 2em;
+  padding: 0.5em 1em;
+  font-size: 1em;
   line-height: 1;
   color: #0599e4;
   z-index: 2;
+  cursor: pointer;
   background-color: transparent;
-  transition: color 0.3s ease-in-out;
-  will-change: color;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 2rem;
-    background: #0599e4;
-    z-index: -1;
-    transform: scale(0, 0);
-    transform-origin: 50% 50%;
-    transition: transform 0.3s ease-in-out;
-    will-change: transform;
-  }
-
-  &:hover {
-    color: #fff;
-  }
-
-  &:hover::before {
-    transform: scale(1, 1);
-  }
 
   &:focus {
     outline: none;
