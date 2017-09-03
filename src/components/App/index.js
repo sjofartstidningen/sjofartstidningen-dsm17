@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 
-import News from '../News';
 import Logotype from '../Logotype';
+import News from '../News';
+import Twitter from '../Twitter';
 
 const Grid = styled.div`
   display: grid;
@@ -33,7 +34,7 @@ class App extends Component {
           <News />
         </GridItem>
         <GridItem>
-          <h1>Twitter</h1>
+          <Twitter />
         </GridItem>
       </Grid>
     );

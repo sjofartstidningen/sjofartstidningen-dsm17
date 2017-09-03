@@ -84,8 +84,10 @@ const Content = styled.div`
 
 const Title = styled.h1`
   position: relative;
-  margin-bottom: 1.5em;
+  margin-bottom: 0.5em;
   font-size: 3.375em;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
   line-height: 0.9em;
   text-wrap: balanced;
 `;
@@ -101,6 +103,8 @@ const StaticHtml = styled.div`
 
   & > p {
     margin-bottom: 1em;
+    font-size: 1.3em;
+    line-height: 1.3em;
   }
 
   & > p:last-child,

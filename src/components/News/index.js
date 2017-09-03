@@ -16,30 +16,28 @@ const Container = styled.ul`
 
 const Article = styled.li`
   position: relative;
-  width: 100%;
-  max-width: 33em;
+  display: flex;
+  width: 80%;
   margin: 0 auto;
   margin-bottom: 3em;
   border-bottom: 1px solid #000;
-  padding: 0 1em 2em;
+  padding: 2em 1em;
 
   &:hover .js-transform-img {
-    transform: translate(-40%, 2.5em);
+    transform: translate(-10%, 5%);
   }
 
   &:hover .js-transform-content {
-    transform: translate(50%, -2.5em);
+    transform: translate(3%, -5%);
   }
 `;
 
 const ImgContainer = styled.div`
   position: relative;
-  width: 100%;
-  padding: 0em;
-  box-shadow: 4px 4px 60px 3px rgba(0, 0, 0, 0.3);
-  background-color: #eee;
+  display: block;
+  width: 40em;
+  padding: 2em;
   z-index: 1;
-  transform: translate(-45%, 2em);
   transition: transform 0.3s ease-in-out;
   will-change: transform;
 `;
@@ -49,7 +47,7 @@ const Img = styled.img`
   display: block;
   max-width: 100%;
   height: auto;
-  opacity: 0.9;
+  box-shadow: 4px 4px 60px 3px rgba(0, 0, 0, 0.3);
   z-index: -1;
 `;
 
@@ -57,15 +55,16 @@ const Content = styled.div`
   position: relative;
   font-size: 1em;
   z-index: 2;
-  transform: translate(45%, -5em);
   transition: transform 0.3s ease-in-out;
   will-change: transform;
 `;
 
 const Title = styled.h1`
   position: relative;
-  margin-bottom: 1.5em;
+  margin-bottom: 0.5em;
   font-size: 3.375em;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
   line-height: 0.9em;
   text-wrap: balanced;
 `;
