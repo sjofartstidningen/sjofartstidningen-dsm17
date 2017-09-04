@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import Tweet from './tweet';
+import Error from '../Error';
 
 const TweetsContainer = styled.div`
   position: relative;
@@ -40,11 +41,12 @@ export default class Twitter extends Component {
     try {
       const res = await fetch('/api/twitter');
       const { tweets } = await res.json();
+
       this.setState(() => ({
         tweets: tweets.statuses,
+        error: null,
       }));
     } catch (e) {
-      console.error(e);
       this.setState(() => ({ error: e.message }));
     }
   };
@@ -56,6 +58,7 @@ export default class Twitter extends Component {
         <TweetsContainer>
           {this.state.tweets.map(t => <Tweet tweet={t} key={t.id} />)}
         </TweetsContainer>
+        {this.state.error && <Error message={this.state.error} />}
       </div>
     );
   }
