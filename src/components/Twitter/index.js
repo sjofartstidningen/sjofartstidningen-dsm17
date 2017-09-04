@@ -22,8 +22,18 @@ export default class Twitter extends Component {
     error: null,
   };
 
+  interval = null;
+
   componentDidMount() {
     this.getTweets();
+    this.interval = setInterval(this.getTweets, 60 * 1000);
+  }
+
+  componentWillUnmount() {
+    if (this.interval) {
+      window.clearInterval(this.interval);
+      this.interval = null;
+    }
   }
 
   getTweets = async () => {
