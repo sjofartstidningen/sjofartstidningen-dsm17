@@ -45,7 +45,7 @@ router.get('/news', async (req, res, next) => {
     const latest = await getLatest();
     cache.set(latest);
 
-    debug('Responding without fetched response');
+    debug('Responding with fetched response');
     return res.status(200).json(Object.assign({}, { cached: false }, latest));
   } catch (e) {
     debug(`Error: ${e.message}`);
