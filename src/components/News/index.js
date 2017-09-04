@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
-import sv from 'date-fns/locale/sv';
 import styled from 'styled-components';
-import balanceText from 'balance-text';
 
 import FullArticle from '../FullArticle';
+import { Excerpt } from '../Article';
+import Error from '../Error';
 
 const Container = styled.ul`
   position: relative;
@@ -14,92 +13,6 @@ const Container = styled.ul`
   font-size: 0.8vw;
 `;
 
-const Article = styled.li`
-  position: relative;
-  display: flex;
-  width: 80%;
-  margin: 0 auto;
-  margin-bottom: 3em;
-  border-bottom: 1px solid #000;
-  padding: 2em 1em;
-
-  &:hover .js-transform-img {
-    transform: translate(-10%, 5%);
-  }
-
-  &:hover .js-transform-content {
-    transform: translate(3%, -5%);
-  }
-`;
-
-const ImgContainer = styled.div`
-  position: relative;
-  display: block;
-  width: 40em;
-  padding: 2em;
-  z-index: 1;
-  transition: transform 0.3s ease-in-out;
-  will-change: transform;
-`;
-
-const Img = styled.img`
-  position: relative;
-  display: block;
-  max-width: 100%;
-  height: auto;
-  box-shadow: 4px 4px 60px 3px rgba(0, 0, 0, 0.3);
-  z-index: -1;
-`;
-
-const Content = styled.div`
-  position: relative;
-  font-size: 1em;
-  z-index: 2;
-  transition: transform 0.3s ease-in-out;
-  will-change: transform;
-`;
-
-const Title = styled.h1`
-  position: relative;
-  margin-bottom: 0.5em;
-  font-size: 3.375em;
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  line-height: 0.9em;
-  text-wrap: balanced;
-`;
-
-const Introduction = styled.div`
-  margin-bottom: 1.5em;
-  font-size: 1.5em;
-  line-height: 1.3em;
-`;
-
-const DateStamp = styled.div`
-  margin-bottom: 1.5em;
-  font-size: 1em;
-  font-style: italic;
-`;
-
-const ShowHideButton = styled.button`
-  position: relative;
-  display: block;
-  margin: 0 0 0 3em;
-  border: 0.2em solid #0599e4;
-  border-radius: 2em;
-  padding: 0.5em 1em;
-  font-size: 1em;
-  line-height: 1;
-  color: #0599e4;
-  z-index: 2;
-  cursor: pointer;
-  background-color: transparent;
-
-  &:focus {
-    outline: none;
-  }
-`;
-
 export default class News extends Component {
   state = {
     articles: [],
@@ -107,8 +20,18 @@ export default class News extends Component {
     error: null,
   };
 
+  interval = null;
+
   componentDidMount() {
     this.fetchNews();
+    this.interval = setInterval(this.fetchNews, 60 * 1000);
+  }
+
+  componentWillUnmount() {
+    if (this.interval) {
+      window.clearInterval(this.interval);
+      this.interval = null;
+    }
   }
 
   fetchNews = async () => {
@@ -116,7 +39,7 @@ export default class News extends Component {
       const res = await fetch('/api/news');
       const { articles } = await res.json();
 
-      this.setState(() => ({ articles }));
+      this.setState(() => ({ articles, error: null }));
     } catch (e) {
       this.setState(() => ({ error: e.message }));
     }
@@ -125,53 +48,26 @@ export default class News extends Component {
   showHideArticle = url => () => {
     const currentUrl = this.state.show;
 
-    if (url == null || url === currentUrl)
+    if (url == null || url === currentUrl) {
       return this.setState(() => ({ show: null }));
+    }
+
     return this.setState(() => ({ show: url }));
   };
 
-  balanceElText = ref => balanceText(ref);
-  balanceChildren = tag => parent => {
-    if (parent && 'querySelectorAll' in parent) {
-      const children = parent.querySelectorAll(tag);
-      children.forEach(this.balanceElText);
-    }
-  };
-
   render() {
-    const { articles, show } = this.state;
+    const { articles, show, error } = this.state;
     const fullArticle = articles.find(a => a.url === show);
+
     return (
       <div>
         <Container>
           {articles.map(a => (
-            <Article key={a.url}>
-              <ImgContainer className="js-transform-img">
-                <Img src={a.img} />
-              </ImgContainer>
-
-              <Content className="js-transform-content">
-                <Title innerRef={this.balanceElText}>{a.title}</Title>
-
-                <Introduction>
-                  <p ref={this.balanceElText}>{a.introduction}</p>
-                </Introduction>
-
-                <DateStamp>
-                  Publicerades för{' '}
-                  <strong>
-                    {distanceInWordsToNow(a.date, { locale: sv })} sedan
-                  </strong>
-                </DateStamp>
-
-                <ShowHideButton
-                  type="button"
-                  onClick={this.showHideArticle(a.url)}
-                >
-                  Läs mer
-                </ShowHideButton>
-              </Content>
-            </Article>
+            <Excerpt
+              key={a.url}
+              article={a}
+              showHide={this.showHideArticle(a.url)}
+            />
           ))}
         </Container>
         {fullArticle && (
@@ -180,6 +76,7 @@ export default class News extends Component {
             hideArticle={this.showHideArticle()}
           />
         )}
+        {error && <Error message={error} />}
       </div>
     );
   }

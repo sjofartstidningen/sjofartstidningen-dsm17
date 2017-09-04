@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 import sv from 'date-fns/locale/sv';
 import balanceText from 'balance-text';
+import { color } from '../../lib/theme';
+
+import { Title, Introduction, DateStamp } from '../Article';
 
 const Container = styled.div`
   position: fixed;
@@ -22,7 +25,7 @@ const Close = styled.button`
   left: 2em;
   width: 4em;
   height: 4em;
-  border: 2px solid #0599e4;
+  border: 2px solid ${color('brand')};
   border-radius: 100%;
   background-color: transparent;
 
@@ -34,7 +37,7 @@ const Close = styled.button`
     left: 10%;
     width: 80%;
     height: 2px;
-    background-color: #0599e4;
+    background-color: ${color('brand')};
   }
 
   &::before {
@@ -44,6 +47,10 @@ const Close = styled.button`
   &::after {
     transform: rotate(-45deg);
   }
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 const Article = styled.article`
@@ -51,10 +58,10 @@ const Article = styled.article`
   width: 35em;
   margin: 2em auto;
   margin-bottom: 3em;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid ${color('black')};
   padding: 0 4em 2em;
   font-size: 1em;
-  background-color: #fff;
+  background-color: ${color('white')};
 `;
 
 const ImgContainer = styled.div`
@@ -62,7 +69,7 @@ const ImgContainer = styled.div`
   left: -100%;
   width: 100%;
   padding: 0em;
-  box-shadow: 4px 4px 60px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0.4em 0.4em 6em 0.3em rgba(26, 26, 26, 0.3);
   background-color: #eee;
   z-index: 1;
 `;
@@ -80,22 +87,6 @@ const Content = styled.div`
   position: relative;
   font-size: 1em;
   z-index: 2;
-`;
-
-const Title = styled.h1`
-  position: relative;
-  margin-bottom: 0.5em;
-  font-size: 3.375em;
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  line-height: 0.9em;
-  text-wrap: balanced;
-`;
-
-const Introduction = styled.div`
-  margin-bottom: 1.5em;
-  font-size: 1.5em;
-  line-height: 1.3em;
 `;
 
 const StaticHtml = styled.div`
@@ -121,16 +112,6 @@ const StaticHtml = styled.div`
     max-width: 100%;
     height: auto;
     margin-left: 3em;
-  }
-`;
-
-const DateStamp = styled.div`
-  margin-bottom: 1.5em;
-  font-size: 1em;
-  font-style: italic;
-
-  & strong {
-    color: #0599e4;
   }
 `;
 
