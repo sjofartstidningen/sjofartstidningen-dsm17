@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
+import subHours from 'date-fns/sub_hours';
 import sv from 'date-fns/locale/sv';
 import balanceText from 'balance-text';
 import { color } from '../../lib/theme';
@@ -108,7 +109,8 @@ export const Excerpt = ({ article, showHide }) => (
       <DateStamp>
         Publicerades för{' '}
         <strong>
-          {distanceInWordsToNow(article.date, { locale: sv })} sedan
+          {distanceInWordsToNow(subHours(article.date, 2), { locale: sv })}{' '}
+          sedan
         </strong>
       </DateStamp>
 
