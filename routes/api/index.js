@@ -58,6 +58,7 @@ router.get('/twitter', async (req, res, next) => {
     const tweets = await twitter();
     return res.status(200).json({ tweets });
   } catch (e) {
+    debug(`Error: ${e.message}`);
     return res
       .status(e.code || e.statusCode || 500)
       .json({ message: e.message });
