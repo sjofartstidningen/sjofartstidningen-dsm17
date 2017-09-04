@@ -47,6 +47,7 @@ export default class Twitter extends Component {
         error: null,
       }));
     } catch (e) {
+      console.log(e);
       this.setState(() => ({ error: e.message }));
     }
   };

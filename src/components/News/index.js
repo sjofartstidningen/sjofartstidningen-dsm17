@@ -41,6 +41,7 @@ export default class News extends Component {
 
       this.setState(() => ({ articles, error: null }));
     } catch (e) {
+      console.log(e);
       this.setState(() => ({ error: e.message }));
     }
   };
