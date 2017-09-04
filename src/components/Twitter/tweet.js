@@ -68,7 +68,7 @@ const generateContent = (entieties, text) => {
       }
 
       if (ent.type === 'media') {
-        media.push(ent.media_url);
+        media.push(ent.media_url_https);
       }
 
       return [
