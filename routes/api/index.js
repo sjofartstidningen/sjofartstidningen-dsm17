@@ -4,6 +4,7 @@ const debug = require('debug')('server:api');
 const express = require('express');
 const router = express.Router();
 const { getLatest } = require('../../lib/sst');
+const twitter = require('../../lib/twitter');
 
 class Cache {
   constructor(res = null) {
@@ -49,6 +50,17 @@ router.get('/news', async (req, res, next) => {
   } catch (e) {
     debug(`Error: ${e.message}`);
     res.status(500).json({ message: e.message });
+  }
+});
+
+router.get('/twitter', async (req, res, next) => {
+  try {
+    const tweets = await twitter();
+    return res.status(200).json({ tweets });
+  } catch (e) {
+    return res
+      .status(e.code || e.statusCode || 500)
+      .json({ message: e.message });
   }
 });
 
